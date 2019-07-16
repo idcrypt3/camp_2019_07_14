@@ -31,11 +31,25 @@ def apply_rotate(message_list, key, block_size=4):
         cipher_list.append(cipher)
     return cipher_list
 
+def undo_rotate(message_list, key, block_size=4):
+    message_list = []
+    bit_max = block_size*8
+    for i in range(len(cipher_list)):
+        chunk = cipher_list[i]
+        carry = chunk % 2**key
+        carry = carry <<(key)
+        number = (chunk >> key) + carry
+        message_list.append(number)
+    return message_list
+
 plaintext = "I hope this works!"
 key = 10
 text_list = pad_message(plaintext)
 print(text_list)
 cipher_list = apply_rotate(text_list, key)
 # cipher = undo_rotate(cipher_list)
-cipher = rebuild_message(cipher_list)
-print(cipher)
+#cipher = rebuild_message(cipher_list)
+#print(cipher)
+message_list = undo_rotate(cipher_list, key)
+message = rebuild_message(message_list)
+print(message)
