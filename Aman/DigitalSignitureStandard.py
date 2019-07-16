@@ -13,6 +13,8 @@ def mod_inv(n, modulus):
     while r[len(r) - 1] != 0:
         quotient = r[index - 2] // r[index - 1]
         q.append(quotient)
+        remainder = r[index - 2] - q[index] * r[index -1]
+        r.append(remainder)
         aux = a[index - 2] - q[index] * a[index - 1]
         a.append(aux)
         index += 1
@@ -51,7 +53,7 @@ def verify(message, signature):
     for sig in signature:
         if sig < 0 or sig > q:
             print("Invalid signature")
-    w = mod_invs(s, q)
+    w = mod_inv(s, q)
     u1 = (new_hash(message) * w) % q
     u2 = (r * w) % q
     v = (((g ** u1) * (y ** u2)) % p) % q
