@@ -5,4 +5,8 @@ for i in numbers:
 print(text)
 for c in text:
     N = ord(c)
-    print(N)
+    print(hex(N))
+csi = "\x1b["
+color = "41m"
+colored_text = csi + color + text
+print(colored_text)
