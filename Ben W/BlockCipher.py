@@ -6,6 +6,8 @@ def pad_message(message, block_size=4):
         chunk = chunk << 8
         if c < len(message):
             chunk += ord(message[c])
+        else:
+            chunk += 0
             if chunk.bit_length() > (block_size - 1)*8:
                 message_list.append(chunk)
                 chunk = 0
