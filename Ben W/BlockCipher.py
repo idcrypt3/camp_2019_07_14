@@ -9,7 +9,7 @@ def pad_message(message, block_size=4):
             if chunk.bit_length() > (block_size - 1)*8:
                 message_list.append(chunk)
                 chunk = 0
-            return message_list
+    return message_list
 
 def rebuild_message(message_list, block_size=4):
     message =""
@@ -17,8 +17,9 @@ def rebuild_message(message_list, block_size=4):
         chunk = message_list[i]
         for c in range(block_size):
                 number = chunk >> (8*(block_size -1-c))%2**8
-                nessage+=chr(number)
+                message+=chr(number)
         return message
+
 def apply_rotate(message_list, key, block_size=4):
     cipher_list = []
     bit_max = block_size*8
@@ -33,6 +34,8 @@ def apply_rotate(message_list, key, block_size=4):
 plaintext = "I hope this works!"
 key = 10
 text_list = pad_message(plaintext)
+print(text_list)
 cipher_list = apply_rotate(text_list, key)
+# cipher = undo_rotate(cipher_list)
 cipher = rebuild_message(cipher_list)
 print(cipher)
