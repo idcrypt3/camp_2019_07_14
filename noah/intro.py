@@ -12,3 +12,10 @@ my_multiple_line_string = """This is the first line
 this is the second line 
 this is the third line"""
 isinstance(five_noah,type)
+print("the dragon lived by the sea.")
+ print("he ate trees and bushes. ")
+ print("people though the dragon was too loud ")
+print("the people sent geoff, the villages butcher, to fight the dragon.")
+print("the dragon thought that sounded unpleasant so he left the sea.  ")
+print("now he lives in the city and eats trees and bushes instead.")
+pasword= input("what's the password")
