@@ -17,10 +17,10 @@ dh_public_key = dh_base ** dh_private_key % dh_mod
 
 def main():
     # Feel free to change this intro msg to whatever you want
-    print("Hello iD Campers, Parents, and Staff!")
-    print("Welcome to the iD Cryptography Package, cryptoIO!!")
-    print("Here you can encrypt messages and save them for others to read.")
-    print("But they will only be able to decrypt them if you (remember and) share the secret keys!")
+    print("Welcome Everybody")
+    print("This is CryptIO, a Cryptographers dream package.")
+    print("You can encrypt and decrypt messages made from other people or even yourself just to have fun")
+    print("Keep in mind you need a secret key if you want to decrypt a message that someone else made.")
 
     # infinite loop runs until the user quits
     while True:
@@ -38,7 +38,7 @@ def main():
         elif choice == 2:
             decrypt()
         elif choice == 0:
-            print("Thank you for using iD Tech cryptoIO!")
+            print("Thank you for using cryptoIO, a cryptographer's dream!")
             print("Have a good summer!")
             break
         else:
@@ -50,9 +50,9 @@ def encrypt():
     data = get_encrypt_input()
 
     while True:
-        file_name = input("Please enter your message's name: ").strip()
+        file_name = input("Please enter the name you want to store you message under: ").strip()
         if "{}.txt".format(file_name) in os.listdir("msgs"):
-            print("Sorry, there is already a secret message with that name. Choose another.")
+            print("Someone already took that name so Sorry. Please choose another name")
             continue
         
         cypher = input(
