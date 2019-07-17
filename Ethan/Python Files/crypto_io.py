@@ -3,10 +3,10 @@ import os, io
 # uncomment the 3 lines below and replace the names of your files (do not include .py) and function defs
 # leave "as name" as-is; this renames your functions so they are all compatible with this program,
 # regardless of what you named them
-from cipherprogram import ceasercipher as shift_cypher
-from BlockCipherV2 import pad_message as block_pad, rebuild_message as block_rebuild
-from BlockCipherV2 import apply_rotate as block_shift, undo_rotation as block_unshift
-from DiffieHellmanV2 import find_shared_key as dh_shared_key, apply_shift as dh_shift, remove_shift as dh_unshift
+from caesarcypher import cipher as shift_cypher
+from BlockCipher import pad_message as block_pad, rebuild_message as block_rebuild
+from BlockCipher import apply_shift as block_shift, undo_shift as block_unshift
+from DiffieHellman import find_shared_key as dh_shared_key, apply_shift as dh_shift, remove_shift as dh_unshift
 
 # here I set the private key used in Diffie-Hellman encryptions. Feel free to change it.
 # the public_base is set to 8 and public_modulus 29, as on GamePlan. You can change those too.
@@ -17,10 +17,10 @@ dh_public_key = dh_base ** dh_private_key % dh_mod
 
 def main():
     # Feel free to change this intro msg to whatever you want
-    print("Welcome Everybody")
-    print("This is CryptIO, a Cryptographers dream package.")
-    print("You can encrypt and decrypt messages made from other people or even yourself just to have fun")
-    print("Keep in mind you need a secret key if you want to decrypt a message that someone else made.")
+    print("Hello iD Campers, Parents, and Staff!")
+    print("Welcome to the iD Cryptography Package, cryptoIO!!")
+    print("Here you can encrypt messages and save them for others to read.")
+    print("But they will only be able to decrypt them if you (remember and) share the secret keys!")
 
     # infinite loop runs until the user quits
     while True:
@@ -38,7 +38,7 @@ def main():
         elif choice == 2:
             decrypt()
         elif choice == 0:
-            print("Thank you for using cryptoIO, a cryptographer's dream!")
+            print("Thank you for using iD Tech cryptoIO!")
             print("Have a good summer!")
             break
         else:
@@ -50,9 +50,9 @@ def encrypt():
     data = get_encrypt_input()
 
     while True:
-        file_name = input("Please enter the name you want to store you message under: ").strip()
+        file_name = input("Please enter your message's name: ").strip()
         if "{}.txt".format(file_name) in os.listdir("msgs"):
-            print("Someone already took that name so Sorry. Please choose another name")
+            print("Sorry, there is already a secret message with that name. Choose another.")
             continue
         
         cypher = input(
@@ -166,6 +166,8 @@ def get_key():
     return key
 
 # This line automatically runs the main def when you start the program.
+
+
 if __name__ == "__main__":
     main()
 
