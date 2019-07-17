@@ -32,9 +32,9 @@ bob_public_key = public_base ** bob_private_key % public_modulus
 
 alice_shared_key = find_shared_key(alice_private_key, bob_public_key)
 alice_cipher = apply_shift(alice_message, alice_shared_key)
-print(alice_cipher)
+# print(alice_cipher)
 
 bob_shared_key = find_shared_key(bob_private_key, alice_public_key)
 alice_plaintext = remove_shift(alice_cipher, bob_shared_key)
-print(alice_plaintext)
+# print(alice_plaintext)
 
