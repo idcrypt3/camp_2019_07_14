@@ -35,18 +35,18 @@ def S1(word):
 
 def pad_message(message):
     padded_message = 0
+    L = len(message) * 8
     for c in message:
         padded_message = padded_message << 8
         padded_message += ord(c)
         padded_message = (paddded_message << 1) + 1
-        L = len(message) * 8
         filler_zeroes = 512 - ((L + 1 + 64) % 512)
         padded_message = padded_message << filler_zeroes
         padded_message = (padded_message << 64) + L
     return padded_message
 
 
-def def SHA256(message):
+def SHA256(message):
         hash_list = [0x6a09e667, 0xbb67ae85, 0x3c6ef372, 0xa54ff53a, 0x510e527f, 0x9b05688c, 0x1f83d9ab, 0x5be0cd19]
         k = [0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5, 0x3956c25b, 0x59f111f1, 0x923f82a4, 0xab1c5ed5,
         0xd807aa98, 0x12835b01, 0x243185be, 0x550c7dc3, 0x72be5d74, 0x80deb1fe, 0x9bdc06a7, 0xc19bf174,
@@ -80,9 +80,22 @@ def def SHA256(message):
                     temp_hash[3] = temp_hash[2]
                     temp_hash[2] = temp_hash[1]
                     temp_hash[1] = temp_hash[0]
-                    temp_hash[0] = (t1 + t2) % 2 ** 32
+                    temp_hash[0] = (t1 + t2) % 2**32
                     for h in range(8):
-                        hash_list[h] = hash_list[h] + temp_hash[h]) % 2**32
+                        hash_list[h] = (hash_list[h] + temp_hash[h]) % 2 ** 32
+        digest = 0
+        for h in range(8):
+            digest = digest << 32
+            digest += hash_list[h]
+        return digest
+
+
+msg = ""
+padded_msg = pad_message(msg)
+hashed_msg = SHA256(padded_msg)
+print(hex(hashed_msg))
+
+
 
 
 
