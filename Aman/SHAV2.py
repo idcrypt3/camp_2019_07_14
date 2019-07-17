@@ -47,11 +47,11 @@ def SHA256(message):
     for i in range(chunk_count):
         chunk = (message >> (512 * (chunk_count - 1 - i))) % 2**512
         word_array = []
-        for i in range(16):
+        for w in range(16):
             word = (chunk >> (32 * (15 - w))) % 2**32
             word_array.append(word)
         for i in range(16, 64):
-            word = (word_array[w - 16] + word_arrau[w - 7] + sig0(word_array[w - 15]) + sig1(word_array[w - 2])) % 2**32
+            word = (word_array[w - 16] + word_array[w - 7] + sig0(word_array[w - 15]) + sig1(word_array[w - 2])) % 2**32
             word_array.append(word)
         temp_hash = [0 for i in range(8)]
         for h in range(8):

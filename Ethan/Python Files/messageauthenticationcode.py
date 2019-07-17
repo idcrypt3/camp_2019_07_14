@@ -9,3 +9,23 @@ def sign_message(message, key):
 
 
 def check_mac(old_mac, new_mac):
+    if old_mac == new_mac:
+        print("message is valid")
+    else:
+        print("message is compromised")
+
+p = 491
+message = "hello world"
+
+key = [15, 20]
+
+mac = sign_message(message, key)
+
+message1 = "hello world"
+message2 = "Hello world"
+
+mac1 = sign_message(message1, key)
+check_mac(mac, mac1)
+
+mac2 = sign_message(message2, key)
+check_mac(mac, mac2)
