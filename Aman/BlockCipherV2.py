@@ -1,3 +1,14 @@
+def main():
+    plaintext = input("What is the message you want to encrypt? ")
+    key = int(input("What is the number key you want to use to encrypt and decrypt the message?"))
+    text_list = pad_message(plaintext)
+    cipher_list = apply_rotate(text_list, key)
+    cipher = rebuild_message(cipher_list)
+    print(cipher)
+    message_list = undo_rotation(cipher_list, key)
+    message = rebuild_message(message_list)
+    print(message)
+
 def pad_message(message, block_size = 4):
     message_list = []
     chunk = 0
@@ -44,12 +55,6 @@ def undo_rotation(cipher_list, key, block_size = 4):
         message_list.append(number)
     return(message_list)
 
-plaintext = input("What is the message you want to encrypt? ")
-key = int(input("What is the number key you want to use to encrypt and decrypt the message? "))
-text_list = pad_message(plaintext)
-cipher_list = apply_rotate(text_list, key)
-cipher = rebuild_message(cipher_list)
-print(cipher)
-message_list = undo_rotation(cipher_list, key)
-message = rebuild_message(message_list)
-print(message)
+if __name__ == "__main__":
+    main()
+
