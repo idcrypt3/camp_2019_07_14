@@ -1,13 +1,16 @@
 
 
+message = input("Please enter a secret message: ").lower()
+key = int(input("Please enter a number to shift by: "))
+
 alphabet = "abcdefghijklmnopqrstuvwxyz"
 partialOne = ""
 partialTwo = ""
 newAlphabet = ""
 newMessage = ""
 
-message = input("Please enter a secret message: ").lower()
-key = int(input("Please enter a number to shift by: "))
+
+
 
 if key == 0:
     newAlphabet = alphabet
@@ -22,11 +25,12 @@ else:
     partialTwo = alphabet[(26 + key):]
     newAlphabet = partialTwo + partialOne
 
-for i in range(0,len(message)):
+for i in range(0, len(message)):
     index = alphabet.find(message[i])
 
     if index < 0:
         newMessage += message[i]
     else:
         newMessage += newAlphabet[index]
+
 print(newMessage)
