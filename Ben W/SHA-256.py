@@ -64,25 +64,25 @@ def SHA256(message):
                 word = (chunk >> (32 * (15 - w))) % 2**32
                 word_array.append(word)
             for w in range(16, 64):
-                    word = (word_array[w - 16] + word_array[w - 7 ] + sig0(word_array[w-15]) + sig1(word_array[w-2])) % 2**32
+                    word = (word_array[w - 16] + word_array[w - 7] + sig0(word_array[w-15]) + sig1(word_array[w-2])) % 2**32
                     word_array.append(word)
             temp_hash = [0 for _ in range(8)]
             for h in range(8):
                 temp_hash[h] = hash_list[h]
-                for w in range(64):
-                    t1 = (k[w] + word_array[w] + ch(temp_hash[4], temp_hash[5], temp_hash[6]) + Sig1(temp_hash[4]) +
-                          temp_hash[7]) % 2 ** 32
-                    t2 = (Sig0(temp_hash[0]) + maj(temp_hash[0], temp_hash[1], temp_hash[2])) % 2 ** 32
-                    temp_hash[7] = temp_hash[6]
-                    temp_hash[6] = temp_hash[5]
-                    temp_hash[5] = temp_hash[4]
-                    temp_hash[4] = (temp_hash[3] + t1) % 2 ** 32
-                    temp_hash[3] = temp_hash[2]
-                    temp_hash[2] = temp_hash[1]
-                    temp_hash[1] = temp_hash[0]
-                    temp_hash[0] = (t1 + t2) % 2**32
-                    for h in range(8):
-                        hash_list[h] = (hash_list[h] + temp_hash[h]) % 2 ** 32
+            for w in range(64):
+                t1 = (k[w] + word_array[w] + ch(temp_hash[4], temp_hash[5], temp_hash[6]) + Sig1(temp_hash[4]) +
+                      temp_hash[7]) % 2 ** 32
+                t2 = (Sig0(temp_hash[0]) + maj(temp_hash[0], temp_hash[1], temp_hash[2])) % 2 ** 32
+                temp_hash[7] = temp_hash[6]
+                temp_hash[6] = temp_hash[5]
+                temp_hash[5] = temp_hash[4]
+                temp_hash[4] = (temp_hash[3] + t1) % 2 ** 32
+                temp_hash[3] = temp_hash[2]
+                temp_hash[2] = temp_hash[1]
+                temp_hash[1] = temp_hash[0]
+                temp_hash[0] = (t1 + t2) % 2**32
+                for h in range(8):
+                    hash_list[h] = (hash_list[h] + temp_hash[h]) % 2 ** 32
         digest = 0
         for h in range(8):
             digest = digest << 32
