@@ -9,7 +9,7 @@ def guessing_game():
     while not guessed:
         Random1 = random.randrange(0, 101)
         if Random1 == computer_number:
-            print("Yay!! O                   nly took me " + str(guesses) + " guesses")
+            print("Yay!! Only took me " + str(guesses) + " guesses")
             break
         else:
             print("Darn. " + str(guesses) + " guesses")

@@ -85,7 +85,9 @@ def encrypt():
 
     with io.open("msgs/{}.txt".format(file_name), 'w+', encoding="utf-8") as file:
         file.write(encrypted)
-    print("Your message was successfully encrypted!\n")
+    text = "|"
+    escape = "\033["
+    print("Your message was successfully encrypted!\n ")
 
 def get_encrypt_input():
     msg = input("Please enter your secret message: ")
