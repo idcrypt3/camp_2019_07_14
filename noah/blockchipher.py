@@ -31,6 +31,9 @@ def apply_rotate(message_list,key,block_size=4):
         cipher_list.append(cipher)
     return cipher_list
 
+    message_list = undo_rotation(cipher_list,key)
+    message_list = rebuild_message(message_list)
+
 message = "privete message"
 paded_message = pad_message(message)
 print("padded message: {}".format(paded_message))
@@ -40,3 +43,5 @@ print("rebuilt message: {}".format(rebuilt_message))
 
 rotated_message = apply_rotate(paded_message,7)
 print("rotated_message: {}".format(paded_message))
+
+print("rebuilt_message: {}".formate(undo_rotation)
