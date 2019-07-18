@@ -9,22 +9,21 @@ def pad_message(message, block_size=4):
         else:
             chunk += 0
         if chunk.bit_length() > (block_size - 1) * 8:
-            message_list.append(chunk)
-            chunk = 0
+                message_list.append(chunk)
+                chunk = 0
     return message_list
-
 def rebuild_message(message_list, block_size=4):
     message = ""
     for i in range(len(message_list)):
         chunk = message_list[i]
         for c in range(block_size):
-            number = (chunk >> (8 * (block_size - 1 - c)))%2**8
+            number = (chunk >> (8 * (block_size - 1 - c))) % 2**8
             message += chr(number)
     return message
 
-def apply_rotate(message_list, key, block_size=4):
+def apply_shift(message_list, key, block_size=4):
     cipher_list = []
-    bit_max = block_size*8
+    bit_max = block_size * 8
     for i in range(len(message_list)):
         chunk = message_list[i]
         carry = chunk % (2 ** key)
@@ -33,7 +32,7 @@ def apply_rotate(message_list, key, block_size=4):
         cipher_list.append(cipher)
     return cipher_list
 
-def undo_rotate(message_list, key, block_size=4):
+def undo_shift(cipher_list, key, block_size=4):
     message_list = []
     bit_max = block_size * 8
     for i in range(len(cipher_list)):
@@ -44,17 +43,18 @@ def undo_rotate(message_list, key, block_size=4):
         message_list.append(number)
     return message_list
 
-
 def main():
-    plaintext = "abcdefghijkl890"
+
+    plaintext = "abcdefghijklmnopqrstuvwxyz"
     key = 20
     text_list = pad_message(plaintext)
-    cipher_list = apply_rotate(text_list, key)
-    message_list = undo_rotate(cipher_list, key)
+    print("chunked: {}".format(text_list))
+    cipher_list = apply_shift(text_list, key)
+    print("encrypted: {}".format(cipher_list))
+    cipher = rebuild_message(cipher_list)
+    print("rebuilt without decrypted: {}".format(cipher))
+    message_list = undo_shift(cipher_list, key)
     message = rebuild_message(message_list)
-    print(message)
-    print(cipher_list)
-
-if __name__ == "  main  ":
+    print("decrypted : {}".format(message))
+if __name__ == "__main__":
     main()
-
