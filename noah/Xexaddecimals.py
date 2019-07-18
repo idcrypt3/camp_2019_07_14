@@ -15,4 +15,4 @@ for i in numbers:
     for c in text:
         ord(c)
 N = ord(c)
-escape = “\x1b[“ 
+escape = “\x1b[“
