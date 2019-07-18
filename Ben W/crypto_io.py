@@ -7,9 +7,6 @@ from ShiftCipher import shift_cipher as shift_cypher
 from BlockCipher import pad_message as block_pad, rebuild_message as block_rebuild
 from BlockCipher import apply_rotate as block_shift, undo_rotate as block_unshift
 from Diffie_Hellman import find_shared_key as dh_shared_key, apply_shift as dh_shift, remove_shift as dh_unshift
-
-# here I set the private key used in Diffie-Hellman encryptions. Feel free to change it.
-# the public_base is set to 8 and public_modulus 29, as on GamePlan. You can change those too.
 dh_base = 8
 dh_mod = 29
 dh_private_key = 49
@@ -17,9 +14,16 @@ dh_public_key = dh_base ** dh_private_key % dh_mod
 
 def main():
     # Feel free to change this intro msg to whatever you want
-    print("Hello Dad, here is my project.")
-    print("Here you can encrypt messages and save them for others to read.")
-    print("But you will only be able to decrypt them if you remember the secret keys.")
+    print("""  _    _      _ _          _    _                 _                                           _           _     
+ | |  | |    | | |        | |  | |               (_)                                         (_)         | |    
+ | |__| | ___| | | ___    | |__| | ___ _ __ ___   _ ___    _ __ ___  _   _    _ __  _ __ ___  _  ___  ___| |_   
+ |  __  |/ _ \ | |/ _ \   |  __  |/ _ \ '__/ _ \ | / __|  | '_ ` _ \| | | |  | '_ \| '__/ _ \| |/ _ \/ __| __|  
+ | |  | |  __/ | | (_) |  | |  | |  __/ | |  __/ | \__ \  | | | | | | |_| |  | |_) | | | (_) | |  __/ (__| |_ _ 
+ |_|  |_|\___|_|_|\___(_) |_|  |_|\___|_|  \___| |_|___/  |_| |_| |_|\__, |  | .__/|_|  \___/| |\___|\___|\__(_)
+                                                                      __/ |  | |            _/ |                
+                                                                     |___/   |_|           |__/                 """)
+    print("You can encrypt messages and save them for others to read.")
+    print("But you will only be able to decrypt them if you remember the secret key(s).")
 
     # infinite loop runs until the user quits
     while True:
@@ -169,7 +173,7 @@ if __name__ == "__main__":
     main()
 
 # Ideas for new features:
-# - Include your name or contact info in the comments and/or opening scroll.
+# - Include your name or contact info in the comments and/or opening scroll. done
 # - Write some messages or stories and encrypt and save them to disk for your family and friends to discover.
 # - Include color codes - red for failed encryption, green for passed (see the lesson Hexadecimal\Character Codes).
 # - This program includes functionality you haven't seen in the form of file I/O, string formatting, and imported

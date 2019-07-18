@@ -12,5 +12,3 @@ escape = "\x1b["
 color = "31m"
 colored_text = escape + color + text
 print(colored_text)
-colored_text = '\x1b[0m'+ text
-print(colored_text)
