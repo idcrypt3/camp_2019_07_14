@@ -1,5 +1,5 @@
 import os, io
-
+from colorama import Fore
 # uncomment the 3 lines below and replace the names of your files (do not include .py) and function defs
 # leave "as name" as-is; this renames your functions so they are all compatible with this program,
 # regardless of what you named them
@@ -17,6 +17,7 @@ dh_public_key = dh_base ** dh_private_key % dh_mod
 
 def main():
     # Feel free to change this intro msg to whatever you want
+    print(Fore.WHITE)
     print("Hello there")
     print("Welcome to the Various Aggregated Processing Equations (VAPE for short)")
     print("Here you can encrypt messages and save them for others to read.")
@@ -30,7 +31,7 @@ def main():
         try: 
             choice = int(choice)
         except: 
-            print("Sorry, that is not a valid choice.")
+            print(Fore.RED, "Sorry, that is not a valid choice.")
             continue
 
         if choice == 1:
@@ -42,7 +43,8 @@ def main():
             print("Have a good summer!")
             break
         else:
-            print("Sorry, '{}' is not a valid choice. Pick 1, 2, or 0.".format(choice))
+            print(Fore.RED, "Sorry, '{}' is not a valid choice. Pick 1, 2, or 0.".format(choice))
+            print(Fore.WHITE)
             continue
 
 
@@ -53,7 +55,8 @@ def encrypt():
     while True:
         file_name = input("Please enter your message's name: ").strip()
         if "{}.txt".format(file_name) in os.listdir("msgs"):
-            print("Sorry, there is already a secret message with that name. Choose another.")
+            print(Fore.RED, "Sorry, there is already a secret message with that name. Choose another.")
+            print(Fore.WHITE)
             continue
         
         cypher = input(
@@ -62,7 +65,8 @@ def encrypt():
         try:
             cypher = int(cypher)
         except ValueError:
-            print("Sorry, {} is not a valid choice. Pick 1, 2, or 3.".format(cypher))
+            print(Fore.RED, "Sorry, {} is not a valid choice. Pick 1, 2, or 3.".format(cypher))
+            print(Fore.WHITE)
             continue
 
         if cypher == 1:
@@ -83,8 +87,8 @@ def encrypt():
 
     with io.open("msgs/{}.txt".format(file_name), 'w+', encoding="utf-8") as file:
         file.write(encrypted)
-    print("Your message was successfully encrypted!\n")
-
+    print(Fore.GREEN, "Your message was successfully encrypted!\n", "green")
+    print(Fore.WHITE)
 
 def get_encrypt_input():
     msg = input("Please enter your secret message: ")
@@ -103,7 +107,8 @@ def decrypt():
         try:
             cypher = int(cypher)
         except ValueError:
-            print("Sorry, {} is not a valid choice. Pick 1, 2, or 3.".format(cypher))
+            print(Fore.RED, "Sorry, {} is not a valid choice. Pick 1, 2, or 3.".format(cypher))
+            print(Fore.WHITE)
             continue
 
         if cypher == 1:
@@ -121,8 +126,8 @@ def decrypt():
         elif cypher == 0:
             return
 
-    print("The decrypted message is:\n'{}'".format(decrypted))
-
+    print(Fore.GREEN, "The decrypted message is:\n'{}'".format(decrypted))
+    print(Fore.WHITE)
     return
 
 
@@ -144,7 +149,8 @@ def get_decrypt_input():
         try:
             choice = int(choice)
         except ValueError:
-            print("Sorry, {} is not a valid choice. Pick between 0 and {}.".format(choice, len(localMsgs)))
+            print(Fore.RED, "Sorry, {} is not a valid choice. Pick between 0 and {}.".format(choice, len(localMsgs)))
+            print(Fore.WHITE)
             continue
 
         if choice == 0:
@@ -155,8 +161,8 @@ def get_decrypt_input():
                 msg = file.read()
             break
         else:
-            print("Sorry, {} is not a valid choice. Pick between 0 and {}.".format(choice, len(localMsgs)))
-
+            print(Fore.RED, "Sorry, {} is not a valid choice. Pick between 0 and {}.".format(choice, len(localMsgs)))
+            print(Fore.WHITE)
     key = get_key()
     return msg, key
 
@@ -167,7 +173,8 @@ def get_key():
             key = int(input("Please enter your secret key: "))
             break
         except ValueError:
-            print("The secret key should be a number. Try again. ")
+            print(Fore.RED, "The secret key should be a number. Try again. ")
+            print(Fore.WHITE)
     return key
 
 # This line automatically runs the main def when you start the program.
@@ -177,11 +184,7 @@ if __name__ == "__main__":
     main()
 
 # Ideas for new features:
-# - Include your name or contact info in the comments and/or opening scroll.
-# - Write some messages or stories and encrypt and save them to disk for your family and friends to discover.
-# - Include color codes - red for failed encryption, green for passed (see the lesson Hexadecimal\Character Codes).
-# - This program includes functionality you haven't seen in the form of file I/O, string formatting, and imported
-# modules. See if you understand what's going on and reference the online documentation if you don't.
+# - Include your nrame o contact info in the comments and/or opening scroll.
 # - Errors are handled, but the user navigation could be more friendly (e.g. allowing users to return to a previous menu
 # rather than forcing them to stick with the choice to encrypt or decrypt, even if they change their mind). Try expand-
 # ing it!
