@@ -1,55 +1,35 @@
 def rr(word, count):
-
     return ((word >> count) | (word << (32 - count))) % 2 ** 32
 
-
 def ch(e, f, g):
-
     return (e & f) ^ ((~e) & g)
 
-
 def maj(a, b, c):
-
     return (a & b) ^ (a & c) ^ (b & c)
 
-
 def s0(word):
-
     return rr(word, 7) ^ rr(word, 18) ^ (word >> 3)
 
-
 def s1(word):
-
     return rr(word, 17) ^ rr(word, 19) ^ (word >> 10)
 
-
 def S0(word):
-
     return rr(word, 2) ^ rr(word, 13) ^ rr(word, 22)
 
-
 def S1(word):
-
     return rr(word, 6) ^ rr(word, 11) ^ rr(word, 25)
 
-
 def pad_message(message):
-
     L = len(message) * 8
-
-    message_int = 0
+    padded_message = 0
     for c in range(len(message)):
-        message_int = message_int << 8
-        message_int += ord(message[c])
-
-    message_int = (message_int << 1) + 1
-
+        padded_message = padded_message << 8
+        padded_message += ord(message[c])
+    padded_message = (padded_message << 1) + 1
     filler_zeroes = 512 - ((L + 65) % 512)
-    message_int = message_int << filler_zeroes
-
-    message_int = (message_int << 64) + L
-    return message_int
-
+    padded_message = padded_message << filler_zeroes
+    padded_message = (padded_message << 64) + L
+    return padded_message
 
 def SHA256(message: int):
 
@@ -76,7 +56,7 @@ def SHA256(message: int):
             word_array.append(word)
 
         for w in range(16, 64):
-            word = (word_array[w - 16] + word_array[w - 7] + s0(word_array[w - 15]) + s1(word_array[w - 2])) % 2 ** 32
+            word = (word_array[w - 16] + word_array[w - 7] + s0(word_array[w - 15]) + s1(word_array[w - 2])) % 2**32
             word_array.append(word)
 
         temp_hash = [0 for _ in range(8)]
