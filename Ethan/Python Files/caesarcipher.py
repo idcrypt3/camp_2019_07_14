@@ -33,8 +33,7 @@ def shiftcipher(message, key):
         else:
             newMessage += newAlphabet[index]
 
-    print(newMessage)
-    return shiftcipher
+    return newMessage
 
 
 if __name__ == "__main__":
