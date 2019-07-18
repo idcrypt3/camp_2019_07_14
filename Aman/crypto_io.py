@@ -17,7 +17,7 @@ dh_public_key = dh_base ** dh_private_key % dh_mod
 
 def main():
     # Feel free to change this intro msg to whatever you want
-    print("Welcome Everybody")
+    print("\033[1;36mWelcome Everybody")
     print("This is CryptIO, a Cryptographers dream package.")
     print("You can encrypt and decrypt messages made from other people or even yourself just to have fun")
     print("Keep in mind you need a secret key if you want to decrypt a message that someone else made.")
@@ -25,9 +25,9 @@ def main():
     # infinite loop runs until the user quits
     while True:
         print() # newline for readability
-        choice = input("Type 1 to encrypt, 2 to decrypt, or 0 to quit: ")
+        choice = input("\033[mType 1 to encrypt, 2 to decrypt, or 0 to quit: ")
         
-        try: 
+        try:
             choice = int(choice)
         except: 
             print("Sorry, that is not a valid choice.")
@@ -38,11 +38,11 @@ def main():
         elif choice == 2:
             decrypt()
         elif choice == 0:
-            print("Thank you for using cryptoIO, a cryptographer's dream!")
+            print("\033[1;36mThank you for using cryptoIO, a cryptographer's dream!")
             print("Have a good summer!")
             break
         else:
-            print("Sorry, '{}' is not a valid choice. Pick 1, 2, or 0.".format(choice))
+            print("\033[1;31mSorry, '{}' is not a valid choice. Pick 1, 2, or 0.".format(choice))
             continue
 
 def encrypt():
