@@ -1,4 +1,4 @@
-import os, io
+import os, io, re
 
 # uncomment the 3 lines below and replace the names of your files (do not include .py) and function defs
 # leave "as name" as-is; this renames your functions so they are all compatible with this program,
@@ -7,6 +7,9 @@ from cipherprogram import ceasercipher as shift_cypher
 from BlockCipherV2 import pad_message as block_pad, rebuild_message as block_rebuild
 from BlockCipherV2 import apply_rotate as block_shift, undo_rotation as block_unshift
 from DiffieHellmanV2 import find_shared_key as dh_shared_key, apply_shift as dh_shift, remove_shift as dh_unshift
+from ROT47Cipher import cipher_encryption as rot_encrypt, cipher_decryption as rot_decrypt
+from RailFenceCipher import cipher_encryption as rail_encrypt, cipher_decryption as rail_decrypt
+from ColTransCiphere import cipher_encryption as col_trans_encrypt, get_number_location as col_trans_get_number_location, keyword_num_assign as col_trans_keyword_num_assign, cipher_decryption as col_trans_decryption
 
 # here I set the private key used in Diffie-Hellman encryptions. Feel free to change it.
 # the public_base is set to 8 and public_modulus 29, as on GamePlan. You can change those too.
@@ -57,12 +60,12 @@ def encrypt():
             continue
         
         cypher = input(
-            "\033[1;35m1   : Ceaser (shift) Cypher\n2   : Block Cypher\n3   : Diffie-Hellman Cypher\nPlease select a cypher (1, 2, or 3): ")
+            "\033[1;35m1   : Ceaser (shift) Cypher\n2   : Block Cypher\n3   : Diffie-Hellman Cypher\n4   : Rot47 Cipher\n5   : Rail-Fence Cipher\n6   : Col-Trans Cipher\nPlease select a cypher (1, 2, 3, 4, 5 or 6): ")
 
         try:
             cypher = int(cypher)
         except ValueError:
-            print("\033[1,31mSorry, {} is not a valid choice. Pick 1, 2, or 3.".format(cypher))
+            print("\033[1,31mSorry, {} is not a valid choice. Pick 1, 2, 3, 4 or 5.".format(cypher))
             continue
 
         if cypher == 1:
@@ -77,6 +80,15 @@ def encrypt():
             msg_public_key = dh_base ** data[1] % dh_mod
             shared_key = dh_shared_key(dh_private_key, msg_public_key)
             encrypted = dh_shift(data[0], shared_key)
+            break
+        elif cypher == 4:
+            encrypted = rot_encrypt(data[0], data[1])
+            break
+        elif cypher == 5:
+            encrypted = rail_encrypt(data[0], data[1])
+            break
+        elif cypher == 6:
+            encrypted = col_trans_encrypt(data[0], data[1])
             break
         elif cypher == 0:
             return
@@ -96,12 +108,12 @@ def decrypt():
 
     while True:
         cypher = input(
-            "1   : Ceaser (shift) Cypher\n2   : Block Cypher\n3   : Diffie-Hellman Cypher\nPlease select a cypher (1, 2, or 3): ")
+            "1   : Ceaser (shift) Cypher\n2   : Block Cypher\n3   : Diffie-Hellman Cypher\n4   : Rot47 Cipher\n5   : Rail-Fence Cipher\n6   : Col-Trans Cipher\nPlease select a cypher (1, 2, 3, 4, 5, or 6): ")
 
         try:
             cypher = int(cypher)
         except ValueError:
-            print("\033[1;31mSorry, {} is not a valid choice. Pick 1, 2, or 3.".format(cypher))
+            print("\033[1;31mSorry, {} is not a valid choice. Pick 1, 2, 3, 4, 5, or 6.".format(cypher))
             continue
 
         if cypher == 1:
@@ -115,6 +127,15 @@ def decrypt():
         elif cypher == 3:
             shared_key = dh_shared_key(data[1], dh_public_key)
             decrypted = dh_unshift(data[0], shared_key)
+            break
+        elif cypher == 4:
+            decrypted = rot_decrypt(data[0], data[1])
+            break
+        elif cypher == 5:
+            decrypted = rail_decrypt(data[0], data[1])
+            break
+        elif cypher == 6:
+            decrypted = col_trans_decryption(data[0], data[1])
             break
         elif cypher == 0:
             return

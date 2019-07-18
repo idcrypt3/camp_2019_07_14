@@ -1,7 +1,4 @@
-def cipher_encryption():
-    msg = input("Enter Plain Text: ").replace(" ", "").upper()
-    key = input("Enter keyword: ").upper()
-
+def cipher_encryption(message, key):
     kywrd_num_list = keyword_num_assign(key)
 
     for i in range(len(key)):
@@ -12,21 +9,21 @@ def cipher_encryption():
     print()
     print("-------------------------")
 
-    extra_letters = len(msg) % len(key)
+    extra_letters = len(message) % len(key)
     dummy_characters = len(key) - extra_letters
 
     if extra_letters != 0:
         for i in range(dummy_characters):
-            msg += "."
+            message += "."
 
 
-    num_of_rows = int(len(msg) / len(key))
+    num_of_rows = int(len(message) / len(key))
 
     arr = [[0] * len(key) for i in range(num_of_rows)]
     z = 0
     for i in range(num_of_rows):
         for j in range(len(key)):
-            arr[i][j] = msg[z]
+            arr[i][j] = message[z]
             z += 1
 
     for i in range(num_of_rows):
@@ -49,7 +46,7 @@ def cipher_encryption():
             cipher_text += arr[j][d]
         k += 1
 
-    print("Cipher Text: {}".format(cipher_text))
+    return cipher_text
 
 
 def get_number_location(key, kywrd_num_list):
@@ -58,7 +55,6 @@ def get_number_location(key, kywrd_num_list):
         for j in range(len(key)):
             if kywrd_num_list[j] == i:
                 num_loc += str(j)
-
     return num_loc
 
 
@@ -71,17 +67,13 @@ def keyword_num_assign(key):
             if alpha[i] == key[j]:
                 init += 1
                 kywrd_num_list[j] = init
-
     return kywrd_num_list
 
 
-def cipher_decryption():
-    msg = input("Enter Cipher Text: ").replace(" ", "").upper()
-    key = input("Enter keyword: ").upper()
-
+def cipher_decryption(message, key):
     kywrd_num_list = keyword_num_assign(key)
 
-    num_of_rows = int(len(msg) / len(key))
+    num_of_rows = int(len(message) / len(key))
 
     num_loc = get_number_location(key, kywrd_num_list)
 
@@ -92,16 +84,16 @@ def cipher_decryption():
     itr = 0
 
 
-    for i in range(len(msg)):
+    for i in range(len(message)):
         d = 0
         if k == len(key):
             k = 0
         else:
             d: int = int(num_loc[k])
         for j in range(num_of_rows):
-            arr[j][d] = msg[itr]
+            arr[j][d] = message[itr]
             itr += 1
-        if itr == len(msg):
+        if itr == len(message):
             break
         k += 1
     print()
@@ -110,20 +102,19 @@ def cipher_decryption():
         for j in range(len(key)):
             plain_text += str(arr[i][j])
 
-    print("Plain Text: " + plain_text)
+    return plain_text
 
 
 def main():
+    message = input("Enter Plain Text: ").replace(" ", "").upper()
+    key = input("Enter keyword: ").upper()
     choice = int(input("1. Encryption\n2. Decryption\nChoose(1,2): "))
     if choice == 1:
-        print("Encryption")
-        cipher_encryption()
+        print(cipher_encryption(message, key))
     elif choice == 2:
-        print("Decryption")
-        cipher_decryption()
+        print(cipher_decryption(message, key))
     else:
         print("Invalid Choice")
-
 
 if __name__ == "__main__":
     main()

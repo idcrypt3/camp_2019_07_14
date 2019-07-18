@@ -1,6 +1,4 @@
-def cipher_encryption():
-    message = input("Enter Message: ")
-    key = 47
+def cipher_encryption(message, key):
     encryp_text = ""
 
     for i in range(len(message)):
@@ -13,11 +11,9 @@ def cipher_encryption():
         else:
             encryp_text += chr(temp)
 
-    print("Encrypted Text: {}".format(encryp_text))
+    return encryp_text
 
-def cipher_decryption():
-    message = input("Enter message: ")
-    key = 47
+def cipher_decryption(message, key):
     decryp_text = ""
 
     for i in range(len(message)):
@@ -30,16 +26,16 @@ def cipher_decryption():
         else:
             decryp_text += chr(temp)
 
-    print("Decrypted Text: {}".format(decryp_text))
+    return decryp_text
 
 def main():
+    message = input("What is your message? ")
+    key = int(input("What is your key? "))
     choice = int(input("1. Encruption\n2. Decryption\n Choose(1,2): "))
     if choice == 1:
-        print("---Encryption---")
-        cipher_encryption()
+        print(cipher_encryption(message, key))
     elif choice == 2:
-        print("---Decryption---")
-        cipher_decryption()
+        print(cipher_decryption(message, key))
     else:
         print("Invalid Choice")
 
