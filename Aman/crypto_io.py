@@ -18,6 +18,7 @@ dh_public_key = dh_base ** dh_private_key % dh_mod
 def main():
     # Feel free to change this intro msg to whatever you want
     print("\033[1;36mWelcome Everybody")
+    print("I am Aman Gupta, a 10th grader at Eastside Prep")
     print("This is CryptIO, a Cryptographers dream package.")
     print("You can encrypt and decrypt messages made from other people or even yourself just to have fun")
     print("Keep in mind you need a secret key if you want to decrypt a message that someone else made.")
@@ -170,15 +171,9 @@ if __name__ == "__main__":
     main()
 
 # Ideas for new features:
-# - Include your name or contact info in the comments and/or opening scroll.
-# - Write some messages or stories and encrypt and save them to disk for your family and friends to discover.
-# - Include color codes - red for failed encryption, green for passed (see the lesson Hexadecimal\Character Codes).
-# - This program includes functionality you haven't seen in the form of file I/O, string formatting, and imported
-# modules. See if you understand what's going on and reference the online documentation if you don't.
 # - Errors are handled, but the user navigation could be more friendly (e.g. allowing users to return to a previous menu
 # rather than forcing them to stick with the choice to encrypt or decrypt, even if they change their mind). Try expand-
 # ing it!
-# Prevent the user from attempting a Ceaser shift greater than +-26, or use mod (%) to correct it
 
 # Advanced features:
 # - Create a puzzle for users to solve by slowly ramping up the difficulty (e.g., the key to a block cypher could be

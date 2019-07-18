@@ -8,7 +8,7 @@ def ceasercipher(message, key):
     partialOne = ""
     partialTwo = ""
     newAlphabet = ""
-
+    key = key % 26
     if key == 0:
         newAlphabet = alphabet
 
