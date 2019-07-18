@@ -3,9 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="65c0348d-8e6a-45c5-9194-e56c72a00d4f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Python Files/caesarcypher.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Python Files/caesarcipher.py" beforeDir="false" afterPath="$PROJECT_DIR$/Python Files/caesarcipher.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Python Files/crypto_io.py" beforeDir="false" afterPath="$PROJECT_DIR$/Python Files/crypto_io.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Python Files/msgs/test.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Python Files/msgs/test1.txt" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -27,20 +27,32 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Python Files/caesarcipher.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+            <state relative-caret-position="80">
+              <caret line="24" column="42" lean-forward="true" selection-start-line="24" selection-start-column="42" selection-end-line="24" selection-end-column="42" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Python Files/crypto_io.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="35" selection-start-line="4" selection-start-column="35" selection-end-line="4" selection-end-column="35" />
+            <state relative-caret-position="-2266">
+              <caret line="31" column="16" lean-forward="true" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="16" />
+              <folding>
+                <element signature="e#0#13#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Python Files/hashexample.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="1" column="14" selection-start-line="1" selection-start-column="14" selection-end-line="1" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -101,6 +113,7 @@
         <option value="$PROJECT_DIR$/Python Files/DiffieHellman.py" />
         <option value="$PROJECT_DIR$/Python Files/caesarcypher.py" />
         <option value="$PROJECT_DIR$/Python Files/caesarcipher.py" />
+        <option value="$PROJECT_DIR$/Python Files/enigma.py" />
         <option value="$PROJECT_DIR$/Python Files/crypto_io.py" />
       </list>
     </option>
@@ -156,7 +169,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.crypto_io">
+  <component name="RunManager" selected="Python.caesarcipher">
     <configuration name="caesarcipher" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Ethan" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -191,27 +204,6 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Python Files/caesarcypher.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="checksums" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="Ethan" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Python Files" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Python Files/checksums.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -262,13 +254,34 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="enigma" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Ethan" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Python Files" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Python Files/enigma.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.crypto_io" />
         <item itemvalue="Python.caesarcipher" />
+        <item itemvalue="Python.enigma" />
+        <item itemvalue="Python.crypto_io" />
         <item itemvalue="Python.caesarcypher" />
         <item itemvalue="Python.digitalsignaturestandard" />
-        <item itemvalue="Python.checksums" />
       </list>
     </recent_temporary>
   </component>
@@ -298,8 +311,8 @@
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49484536" visible="true" weight="0.2247191" />
-      <window_info id="Structure" order="1" sideWeight="0.5051546" side_tool="true" weight="0.2247191" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49278352" visible="true" weight="0.2247191" />
+      <window_info id="Structure" order="1" sideWeight="0.5072165" side_tool="true" visible="true" weight="0.2247191" />
       <window_info id="Favorites" order="2" sideWeight="0.50427353" side_tool="true" weight="0.45698926" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3286119" />
@@ -425,13 +438,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Python Files/hashexample.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="14" selection-start-line="1" selection-start-column="14" selection-end-line="1" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Python Files/Diffie-Hellman.py" />
     <entry file="file://$PROJECT_DIR$/Python Files/caesarcypher.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -461,17 +467,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Python Files/caesarcipher.py">
+    <entry file="file://$PROJECT_DIR$/Python Files/hashexample.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+        <state relative-caret-position="17">
+          <caret line="1" column="14" selection-start-line="1" selection-start-column="14" selection-end-line="1" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Python Files/enigma.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="403">
+          <caret line="123" lean-forward="true" selection-start-line="123" selection-end-line="123" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Python Files/crypto_io.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="35" selection-start-line="4" selection-start-column="35" selection-end-line="4" selection-end-column="35" />
+        <state relative-caret-position="-2266">
+          <caret line="31" column="16" lean-forward="true" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="16" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Python Files/caesarcipher.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="24" column="42" lean-forward="true" selection-start-line="24" selection-start-column="42" selection-end-line="24" selection-end-column="42" />
         </state>
       </provider>
     </entry>
