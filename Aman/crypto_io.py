@@ -9,7 +9,7 @@ from BlockCipherV2 import apply_rotate as block_shift, undo_rotation as block_un
 from DiffieHellmanV2 import find_shared_key as dh_shared_key, apply_shift as dh_shift, remove_shift as dh_unshift
 from ROT47Cipher import cipher_encryption as rot_encrypt, cipher_decryption as rot_decrypt
 from RailFenceCipher import cipher_encryption as rail_encrypt, cipher_decryption as rail_decrypt
-from ColTransCiphere import cipher_encryption as col_trans_encrypt, get_number_location as col_trans_get_number_location, keyword_num_assign as col_trans_keyword_num_assign, cipher_decryption as col_trans_decryption
+from Hash import pad_message as hash_pad, SHA256
 
 # here I set the private key used in Diffie-Hellman encryptions. Feel free to change it.
 # the public_base is set to 8 and public_modulus 29, as on GamePlan. You can change those too.
@@ -29,7 +29,7 @@ def main():
     # infinite loop runs until the user quits
     while True:
         print() # newline for readability
-        choice = input("\033[mType 1 to encrypt, 2 to decrypt, or 0 to quit: ")
+        choice = input("\033[mType 1 to encrypt, 2 to decrypt, 3 to run a security scan or 0 to quit: ")
         
         try:
             choice = int(choice)
@@ -41,6 +41,8 @@ def main():
             encrypt()
         elif choice == 2:
             decrypt()
+        elif choice == 3:
+            scan()
         elif choice == 0:
             print("\033[1;35mThank you for using cryptoIO, a cryptographer's dream!")
             print("Have a good summer!")
@@ -60,7 +62,7 @@ def encrypt():
             continue
         
         cypher = input(
-            "\033[1;35m1   : Ceaser (shift) Cypher\n2   : Block Cypher\n3   : Diffie-Hellman Cypher\n4   : Rot47 Cipher\n5   : Rail-Fence Cipher\n6   : Col-Trans Cipher\nPlease select a cypher (1, 2, 3, 4, 5 or 6): ")
+            "\033[1;35m1   : Ceaser (shift) Cypher\n2   : Block Cypher\n3   : Diffie-Hellman Cypher\n4   : Rot47 Cipher\n5   : Rail-Fence Cipher\nPlease select a cypher (1, 2, 3, 4, or 5): ")
 
         try:
             cypher = int(cypher)
@@ -87,11 +89,11 @@ def encrypt():
         elif cypher == 5:
             encrypted = rail_encrypt(data[0], data[1])
             break
-        elif cypher == 6:
-            encrypted = col_trans_encrypt(data[0], data[1])
-            break
         elif cypher == 0:
             return
+        else:
+            print("\033[1;31mThat is not a valid choice")
+            continue
 
     with io.open("msgs/{}.txt".format(file_name), 'w+', encoding="utf-8") as file:
         file.write(encrypted)
@@ -108,12 +110,12 @@ def decrypt():
 
     while True:
         cypher = input(
-            "1   : Ceaser (shift) Cypher\n2   : Block Cypher\n3   : Diffie-Hellman Cypher\n4   : Rot47 Cipher\n5   : Rail-Fence Cipher\n6   : Col-Trans Cipher\nPlease select a cypher (1, 2, 3, 4, 5, or 6): ")
+            "1   : Ceaser (shift) Cypher\n2   : Block Cypher\n3   : Diffie-Hellman Cypher\n4   : Rot47 Cipher\n5   : Rail-Fence Cipher\nPlease select a cypher (1, 2, 3, 4, or 5): ")
 
         try:
             cypher = int(cypher)
         except ValueError:
-            print("\033[1;31mSorry, {} is not a valid choice. Pick 1, 2, 3, 4, 5, or 6.".format(cypher))
+            print("\033[1;31mSorry, {} is not a valid choice. Pick 1, 2, 3, 4, or 5.".format(cypher))
             continue
 
         if cypher == 1:
@@ -133,9 +135,6 @@ def decrypt():
             break
         elif cypher == 5:
             decrypted = rail_decrypt(data[0], data[1])
-            break
-        elif cypher == 6:
-            decrypted = col_trans_decryption(data[0], data[1])
             break
         elif cypher == 0:
             return
@@ -187,6 +186,17 @@ def get_key():
             print("\033[1;31mThe secret key should be a number. Try again. ")
     return key
 
+def scan():
+    files = os.listdir("msgs")
+    hash_list = ""
+    for i in range(len(files)):
+        with io.open("msgs/{}".format(files[i]), 'r', encoding="utf-8") as file:
+            msg = file.read()
+        hash = SHA256(hash_pad(msg))
+        hash_list += files[i] + "\n" + hex(hash) + "\n"
+    with io.open(".manifest", "w+", encoding="utf-8") as file:
+        file.write(hash_list.strip())
+
 # This line automatically runs the main def when you start the program.
 if __name__ == "__main__":
     main()
@@ -202,4 +212,3 @@ if __name__ == "__main__":
 # could have a clue to a Diffie-Hellman cypher, and...)
 # - Display the checksum or hash of messages as they are encrypted and decrypted.
 # You could even save the checksum/hash alongside the messages, so users know if a file has been modified.
-# - Expand your cyphers with more options, or write a new one from internet tutorials.
