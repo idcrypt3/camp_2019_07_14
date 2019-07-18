@@ -17,7 +17,8 @@ dh_public_key = dh_base ** dh_private_key % dh_mod
 
 def main():
     # Feel free to change this intro msg to whatever you want
-    print("Welcome Everybody")
+    print("\033[1;36mWelcome Everybody")
+    print("I am Aman Gupta, a 10th grader at Eastside Prep")
     print("This is CryptIO, a Cryptographers dream package.")
     print("You can encrypt and decrypt messages made from other people or even yourself just to have fun")
     print("Keep in mind you need a secret key if you want to decrypt a message that someone else made.")
@@ -25,9 +26,9 @@ def main():
     # infinite loop runs until the user quits
     while True:
         print() # newline for readability
-        choice = input("Type 1 to encrypt, 2 to decrypt, or 0 to quit: ")
+        choice = input("\033[mType 1 to encrypt, 2 to decrypt, or 0 to quit: ")
         
-        try: 
+        try:
             choice = int(choice)
         except: 
             print("Sorry, that is not a valid choice.")
@@ -38,30 +39,30 @@ def main():
         elif choice == 2:
             decrypt()
         elif choice == 0:
-            print("Thank you for using cryptoIO, a cryptographer's dream!")
+            print("\033[1;35mThank you for using cryptoIO, a cryptographer's dream!")
             print("Have a good summer!")
             break
         else:
-            print("Sorry, '{}' is not a valid choice. Pick 1, 2, or 0.".format(choice))
+            print("\033[1;31mSorry, '{}' is not a valid choice. Pick 1, 2, or 0.".format(choice))
             continue
 
 def encrypt():
-    print("Preparing to encrypt...")
+    print("\033[1;33mPreparing to encrypt...")
     data = get_encrypt_input()
 
     while True:
-        file_name = input("Please enter the name you want to store you message under: ").strip()
+        file_name = input("\033[mPlease enter the name you want to store you message under: ").strip()
         if "{}.txt".format(file_name) in os.listdir("msgs"):
-            print("Someone already took that name so Sorry. Please choose another name")
+            print("\033[1;31mSomeone already took that name so Sorry. Please choose another name")
             continue
         
         cypher = input(
-            "1   : Ceaser (shift) Cypher\n2   : Block Cypher\n3   : Diffie-Hellman Cypher\nPlease select a cypher (1, 2, or 3): ")
+            "\033[1;35m1   : Ceaser (shift) Cypher\n2   : Block Cypher\n3   : Diffie-Hellman Cypher\nPlease select a cypher (1, 2, or 3): ")
 
         try:
             cypher = int(cypher)
         except ValueError:
-            print("Sorry, {} is not a valid choice. Pick 1, 2, or 3.".format(cypher))
+            print("\033[1,31mSorry, {} is not a valid choice. Pick 1, 2, or 3.".format(cypher))
             continue
 
         if cypher == 1:
@@ -82,7 +83,7 @@ def encrypt():
 
     with io.open("msgs/{}.txt".format(file_name), 'w+', encoding="utf-8") as file:
         file.write(encrypted)
-    print("Your message was successfully encrypted!\n")
+    print("\033[1;32mYour message was successfully encrypted!\n")
 
 def get_encrypt_input():
     msg = input("Please enter your secret message: ")
@@ -90,7 +91,7 @@ def get_encrypt_input():
     return msg, key
 
 def decrypt():
-    print("Preparing to decrypt...")
+    print("\033[1;34mPreparing to decrypt...")
     data = get_decrypt_input()
 
     while True:
@@ -100,7 +101,7 @@ def decrypt():
         try:
             cypher = int(cypher)
         except ValueError:
-            print("Sorry, {} is not a valid choice. Pick 1, 2, or 3.".format(cypher))
+            print("\033[1;31mSorry, {} is not a valid choice. Pick 1, 2, or 3.".format(cypher))
             continue
 
         if cypher == 1:
@@ -118,7 +119,7 @@ def decrypt():
         elif cypher == 0:
             return
 
-    print("The decrypted message is:\n'{}'".format(decrypted))
+    print("\033[1;32mThe decrypted message is:\n'{}'".format(decrypted))
 
     return
 
@@ -140,7 +141,7 @@ def get_decrypt_input():
         try:
             choice = int(choice)
         except ValueError:
-            print("Sorry, {} is not a valid choice. Pick between 0 and {}.".format(choice, len(localMsgs)))
+            print("\033[1;31mSorry, {} is not a valid choice. Pick between 0 and {}.".format(choice, len(localMsgs)))
             continue
 
         if choice == 0:
@@ -151,7 +152,7 @@ def get_decrypt_input():
                 msg = file.read()
             break
         else:
-            print("Sorry, {} is not a valid choice. Pick between 0 and {}.".format(choice, len(localMsgs)))
+            print("\033[1;31mSorry, {} is not a valid choice. Pick between 0 and {}.".format(choice, len(localMsgs)))
 
     key = get_key()
     return msg, key
@@ -162,7 +163,7 @@ def get_key():
             key = int(input("Please enter your secret key: "))
             break
         except ValueError:
-            print("The secret key should be a number. Try again. ")
+            print("\033[1;31mThe secret key should be a number. Try again. ")
     return key
 
 # This line automatically runs the main def when you start the program.
@@ -170,15 +171,9 @@ if __name__ == "__main__":
     main()
 
 # Ideas for new features:
-# - Include your name or contact info in the comments and/or opening scroll.
-# - Write some messages or stories and encrypt and save them to disk for your family and friends to discover.
-# - Include color codes - red for failed encryption, green for passed (see the lesson Hexadecimal\Character Codes).
-# - This program includes functionality you haven't seen in the form of file I/O, string formatting, and imported
-# modules. See if you understand what's going on and reference the online documentation if you don't.
 # - Errors are handled, but the user navigation could be more friendly (e.g. allowing users to return to a previous menu
 # rather than forcing them to stick with the choice to encrypt or decrypt, even if they change their mind). Try expand-
 # ing it!
-# Prevent the user from attempting a Ceaser shift greater than +-26, or use mod (%) to correct it
 
 # Advanced features:
 # - Create a puzzle for users to solve by slowly ramping up the difficulty (e.g., the key to a block cypher could be

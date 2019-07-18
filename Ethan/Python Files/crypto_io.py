@@ -3,7 +3,7 @@ import os, io
 # uncomment the 3 lines below and replace the names of your files (do not include .py) and function defs
 # leave "as name" as-is; this renames your functions so they are all compatible with this program,
 # regardless of what you named them
-from caesarcypher import cipher as shift_cypher
+from caesarcipher import shiftcipher as shift_cypher
 from BlockCipher import pad_message as block_pad, rebuild_message as block_rebuild
 from BlockCipher import apply_shift as block_shift, undo_shift as block_unshift
 from DiffieHellman import find_shared_key as dh_shared_key, apply_shift as dh_shift, remove_shift as dh_unshift
@@ -45,6 +45,7 @@ def main():
             print("Sorry, '{}' is not a valid choice. Pick 1, 2, or 0.".format(choice))
             continue
 
+
 def encrypt():
     print("Preparing to encrypt...")
     data = get_encrypt_input()
@@ -84,10 +85,12 @@ def encrypt():
         file.write(encrypted)
     print("Your message was successfully encrypted!\n")
 
+
 def get_encrypt_input():
     msg = input("Please enter your secret message: ")
     key = get_key()
     return msg, key
+
 
 def decrypt():
     print("Preparing to decrypt...")
@@ -122,6 +125,7 @@ def decrypt():
 
     return
 
+
 def get_decrypt_input():
     localMsgs = os.listdir("msgs")
     for i in range(len(localMsgs)):
@@ -155,6 +159,7 @@ def get_decrypt_input():
 
     key = get_key()
     return msg, key
+
 
 def get_key():
     while True:

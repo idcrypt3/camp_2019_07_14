@@ -76,7 +76,12 @@ def SHA256(message):
         digest += hash_list[h]
         return digest
 
-msg = ""
-padded_msg = pad_message(msg)
-hashed_msg = SHA256(padded_msg)
-print(hex(hashed_msg))
+m1 = ""
+p1 = pad_message(m1)
+h1 = SHA256(p1)
+print(hex(p1))
+print(hex(h1))
+m2 = "abcdefghbcdefghicdefghijdefghijkefghijklfghijklmghijklmnhijklmnoijklmnopjklmnopqklmnopqrlmnopqrsmnopqrstnopqrstu"
+p2 = pad_message(m2)
+h2 = SHA256(p2)
+print(hex(h2))
