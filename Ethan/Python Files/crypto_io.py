@@ -15,6 +15,7 @@ dh_mod = 29
 dh_private_key = 49
 dh_public_key = dh_base ** dh_private_key % dh_mod
 
+
 def main():
     # Feel free to change this intro msg to whatever you want
     print(Fore.WHITE)
@@ -89,6 +90,7 @@ def encrypt():
         file.write(encrypted)
     print(Fore.GREEN, "Your message was successfully encrypted!\n", "green")
     print(Fore.WHITE)
+
 
 def get_encrypt_input():
     msg = input("Please enter your secret message: ")
