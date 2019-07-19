@@ -19,9 +19,7 @@ dh_public_key = dh_base ** dh_private_key % dh_mod
 def main():
     # Feel free to change this intro msg to whatever you want
     print(Fore.WHITE)
-    print("Hello there")
-    print("Welcome to the Various Aggregated Processing Equations (VAPE for short)")
-    print("Here you can encrypt messages and save them for others to read.")
+    print("Here you can encrypt and decrypt messages and save them ")
     print("But they will only be able to decrypt them if you (remember and) share the secret keys!")
 
     # infinite loop runs until the user quits
