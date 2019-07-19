@@ -34,19 +34,19 @@ def apply_rotate(message_list, key, block_size=4):
     return cipher_list
 
 def undo_rotate(message_list, key, block_size=4):
-    message_list = []
+    cipher_list = []
     bit_max = block_size * 8
-    for i in range(len(cipher_list)):
-        chunk = cipher_list[i]
+    for i in range(len(message_list)):
+        chunk = message_list[i]
         carry = chunk % (2 ** (bit_max - key))
         carry = carry << key
         number = (chunk >> (bit_max - key)) + carry
-        message_list.append(number)
-    return message_list
+        cipher_list.append(number)
+    return cipher_list
 
 
 def main():
-    plaintext = "abcdefghijkl890"
+    plaintext = "Do you work?"
     key = 20
     text_list = pad_message(plaintext)
     cipher_list = apply_rotate(text_list, key)
@@ -55,6 +55,5 @@ def main():
     print(message)
     print(cipher_list)
 
-if __name__ == "  main  ":
+if __name__ == "__main__":
     main()
-
