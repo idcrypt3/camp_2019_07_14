@@ -237,5 +237,3 @@ if __name__ == "__main__":
 # - Create a puzzle for users to solve by slowly ramping up the difficulty (e.g., the key to a block cypher could be
 # written in a ceaser cypher (as a word - remember, our ceaser cypher only substitutes letters), and that block cypher
 # could have a clue to a Diffie-Hellman cypher, and...)
-# - Display the checksum or hash of messages as they are encrypted and decrypted.
-# You could even save the checksum/hash alongside the messages, so users know if a file has been modified.
