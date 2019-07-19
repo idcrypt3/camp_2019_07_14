@@ -94,11 +94,22 @@ def encrypt():
         else:
             print("\033[1;31mThat is not a valid choice")
             continue
+    try:
+        with io.open("msgs/{}.txt".format(file_name), 'w+', encoding="utf-8") as file:
+            file.write(encrypted)
+    except ValueError:
+        print("Error while writing the encrypted message file")
 
-    with io.open("msgs/{}.txt".format(file_name), 'w+', encoding="utf-8") as file:
-        file.write(encrypted)
+    try:
+        with io.open(".manifest", "r", encoding="utf-8") as file:
+            new_manifest = file.read()
+        new_manifest += "\n" + file_name + ".txt\n" + hex(SHA256(hash_pad(encrypted)))
+        with io.open(".manifest", "w+", encoding="utf-8") as file:
+            file.write(new_manifest)
+    except ValueError:
+        print("Error in Security Scan while trying to write new manifest. Error in file {}".format(encrypted))
 
-    print("\033[1;32mYour message was successfully encrypted!\n")
+
 
 def get_encrypt_input():
     msg = input("Please enter your secret message: ")
