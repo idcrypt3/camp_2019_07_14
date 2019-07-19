@@ -29,7 +29,7 @@ def main():
     # infinite loop runs until the user quits
     while True:
         print() # newline for readability
-        choice = input("\033[mType 1 to encrypt, 2 to decrypt, 3 to run a security scan or 0 to quit: ")
+        choice = input("\033[1;33mType 1 to encrypt, 2 to decrypt, 3 to run a security scan or 0 to quit: ")
         
         try:
             choice = int(choice)
@@ -42,7 +42,7 @@ def main():
         elif choice == 2:
             decrypt()
         elif choice == 3:
-            scan()
+            compare_scan()
         elif choice == 0:
             print("\033[1;35mThank you for using cryptoIO, a cryptographer's dream!")
             print("Have a good summer!")
@@ -97,6 +97,7 @@ def encrypt():
 
     with io.open("msgs/{}.txt".format(file_name), 'w+', encoding="utf-8") as file:
         file.write(encrypted)
+
     print("\033[1;32mYour message was successfully encrypted!\n")
 
 def get_encrypt_input():
@@ -197,6 +198,21 @@ def scan():
     with io.open(".manifest", "w+", encoding="utf-8") as file:
         file.write(hash_list.strip())
 
+def compare_scan():
+    files = os.listdir("msgs")
+    with io.open(".manifest", "r", encoding="utf-8") as file:
+        manifest = file.read()
+    manifest = manifest.split("\n")
+    for f in files:
+        i = manifest.index(f)
+        with io.open("msgs/{}".format(f), 'r', encoding="utf-8") as file:
+            message = file.read()
+        hex_compare = hex(SHA256(hash_pad(message)))
+        if hex_compare == manifest[i + 1]:
+            print("Messages are fine")
+            continue
+        else:
+            print("The Message {} has been compromised".format(f))
 # This line automatically runs the main def when you start the program.
 if __name__ == "__main__":
     main()
