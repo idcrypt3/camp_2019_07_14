@@ -42,15 +42,16 @@ def undo_rotate(cipher_list,key,block_size=4):
         message_list.append(cipher)
     return message_list
 
-message = "privete message"
-paded_message = pad_message(message)
-print("padded message: {}".format(paded_message))
+if __name__ == "__main__":
+    message = "privete message"
+    paded_message = pad_message(message)
+    print("padded message: {}".format(paded_message))
 
-rotated_message = apply_rotate(paded_message,7)
-print("rotated_message: {}".format(rotated_message))
+    rotated_message = apply_rotate(paded_message,7)
+    print("rotated_message: {}".format(rotated_message))
 
-unrotated_message = undo_rotate(rotated_message,7)
-print("unrotated: {}".format(unrotated_message))
+    unrotated_message = undo_rotate(rotated_message,7)
+    print("unrotated: {}".format(unrotated_message))
 
-rebuilt_message = rebuild_message(unrotated_message)
-print("rebuilt message: {}".format(rebuilt_message))
+    rebuilt_message = rebuild_message(unrotated_message)
+    print("rebuilt message: {}".format(rebuilt_message))

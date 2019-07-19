@@ -3,7 +3,7 @@ import os, io
 # uncomment the 3 lines below and replace the names of your files (do not include .py) and function defs
 # leave "as name" as-is; this renames your functions so they are all compatible with this program,
 # regardless of what you named them
-#from YOUR_SHIFT_CYPHER_FILE import YOUR_SHIFT_DEF as shift_cypher
+from cipher import cipher as shift_cypher
 from blockchipher import pad_message as block_pad, rebuild_message as block_rebuild
 from blockchipher import apply_rotate as block_shift, undo_rotate as block_unshift
 
@@ -19,7 +19,7 @@ def main():
     print("hello i am noah jaillet")
     print("thank you for looking at my work!")
     print("this is my first time doing anything to do with coding.")
-    print("thank you for trying to understand what is happening i will do my best to walk you threw this thank you")
+    print("thank you for trying to understand what is happening i will do my best to walk you through this thank you")
 
     # infinite loop runs until the user quits
     while True:
@@ -55,7 +55,7 @@ def encrypt():
             continue
         
         cypher = input(
-            "1   : Ceaser (shift) Cypher\n2   : Block Cypher\n3   : Diffie-Hellman Cypher\nPlease select a cypher (1, 2, or 3): ")
+            "1   : Ceaser (shift) Cypher\n2   : Block Cypher\nPlease select a cypher (1, 2, or 3): ")
 
         try:
             cypher = int(cypher)
@@ -70,11 +70,6 @@ def encrypt():
             chunk_list = block_pad(data[0])
             encrypted = block_shift(chunk_list, data[1])
             encrypted = "\n".join(str(s) for s in encrypted)
-            break
-        elif cypher == 3:
-            msg_public_key = dh_base ** data[1] % dh_mod
-            shared_key = dh_shared_key(dh_private_key, msg_public_key)
-            encrypted = dh_shift(data[0], shared_key)
             break
         elif cypher == 0:
             return
@@ -94,7 +89,7 @@ def decrypt():
 
     while True:
         cypher = input(
-            "1   : Ceaser (shift) Cypher\n2   : Block Cypher\n3   : Diffie-Hellman Cypher\nPlease select a cypher (1, 2, or 3): ")
+            "1   : Ceaser (shift) Cypher\n2   : Block Cypher\nPlease select a cypher (1 or 2): ")
 
         try:
             cypher = int(cypher)
@@ -109,10 +104,6 @@ def decrypt():
             chunk_list = list(map(int, data[0].split("\n")))
             chunk_list = block_unshift(chunk_list, data[1])
             decrypted = block_rebuild(chunk_list)
-            break
-        elif cypher == 3:
-            shared_key = dh_shared_key(data[1], dh_public_key)
-            decrypted = dh_unshift(data[0], shared_key)
             break
         elif cypher == 0:
             return
