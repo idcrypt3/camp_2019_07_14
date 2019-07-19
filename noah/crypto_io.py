@@ -16,10 +16,10 @@ dh_public_key = dh_base ** dh_private_key % dh_mod
 
 def main():
     # Feel free to change this intro msg to whatever you want
-    print("Hello iD Campers, Parents, and Staff!")
-    print("Welcome to the iD Cryptography Package, cryptoIO!!")
-    print("Here you can encrypt messages and save them for others to read.")
-    print("But they will only be able to decrypt them if you (remember and) share the secret keys!")
+    print("hello i am noah jaillet")
+    print("thank you for looking at my work!")
+    print("this is my first time doing anything to do with coding.")
+    print("thank you for trying to understand what is happening i will do my best to walk you threw this thank you")
 
     # infinite loop runs until the user quits
     while True:
